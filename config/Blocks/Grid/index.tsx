@@ -2,7 +2,8 @@ import { ComponentConfig, DropZone } from "@measured/puck";
 
 export type GridProps = {
     column: number,
-    gap: number
+    gap: number,
+    row: number
 }
 
 export const Grid: ComponentConfig<GridProps> = {
@@ -13,15 +14,20 @@ export const Grid: ComponentConfig<GridProps> = {
         },
         gap: {
             type: 'number'
-        }
+        },
+        row: {
+            label: 'Number of Rows',
+            type: 'number'
+        },
     },
     defaultProps: {
-        column: 0,
-        gap: 0
+        column: 2,
+        gap: 12,
+        row: 2
     },
-    render: ({ column, gap }) => (
+    render: ({ column, gap, row }) => (
         <section style={{ padding: '6px' }}>
-            <DropZone zone="Zone-1" style={{ display: 'grid', gap: `${gap}px`, gridTemplateColumns: `repeat(${column}, 1fr)` }} />
+            <DropZone zone="Grid" style={{ display: 'grid', gap: `${gap}px`, gridTemplateColumns: `repeat(${column}, 1fr)`, gridTemplateRows: `repeat(${row}, 1fr)`, }} />
         </section>
     )
 }

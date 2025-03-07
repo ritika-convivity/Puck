@@ -1,8 +1,11 @@
 import { ComponentConfig, DropZone } from "@measured/puck";
 
 export type FlexProps = {
-    direction: 'row' | 'column',
-    gap: number
+    justifyContent: "start" | "center" | "end";
+    direction: "row" | "column";
+    gap: number;
+    wrap: "wrap" | "nowrap";
+    alignItems: "start" | "center" | "end";
 }
 
 export const Flex: ComponentConfig<FlexProps> = {
@@ -15,15 +18,35 @@ export const Flex: ComponentConfig<FlexProps> = {
         },
         gap: {
             type: 'number'
-        }
+        },
+        wrap: {
+            type: 'radio', options: [{ label: 'true', value: 'wrap' },
+            { label: 'false', value: 'nowrap' }
+            ]
+        },
+        justifyContent: {
+            type: 'radio', options: [{ label: 'Start', value: 'start' }, { label: 'Center', value: 'center' }, { label: 'End', value: 'end' }]
+        },
+        alignItems: {
+            type: 'radio', options: [{ label: 'Start', value: 'start' }, { label: 'Center', value: 'center' }, { label: 'End', value: 'end' }]
+        },
     },
     defaultProps: {
         direction: 'row',
-        gap: 0
+        gap: 12,
+        wrap: 'nowrap',
+        justifyContent: 'start',
+        alignItems: 'start'
     },
-    render: ({ direction, gap }) => (
-        <section style={{ padding: '6px' }}>
-            <DropZone zone="Flex" style={{ display: 'flex', flexDirection: `${direction}`, gap: `${gap}px` }} />
-        </section>
-    )
+    render: ({ direction, gap, wrap, justifyContent, alignItems }) => {
+        console.log(wrap, 'wrapwrap')
+        return (
+            <section style={{ padding: '6px' }}>
+                <DropZone zone="Flex" style={{
+                    display: 'flex', flexDirection: direction, gap: `${gap}px`,
+                    justifyContent: justifyContent, flexWrap: `${wrap}`, alignItems: alignItems
+                }} />
+            </section>
+        )
+    }
 }

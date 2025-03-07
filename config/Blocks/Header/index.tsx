@@ -5,10 +5,9 @@ export type HeaderProps = {
         url?: string;
         alt?: string;
     };
-    buttons: {
+    navItems: {
         label: string;
         href: string;
-        variant?: "primary" | "secondary";
     }[];
 };
 
@@ -22,7 +21,7 @@ export const Header: ComponentConfig<HeaderProps> = {
                 alt: { type: "text" },
             },
         },
-        buttons: {
+        navItems: {
             type: "array",
             min: 1,
             max: 4,
@@ -30,13 +29,6 @@ export const Header: ComponentConfig<HeaderProps> = {
             arrayFields: {
                 label: { type: "text" },
                 href: { type: "text" },
-                variant: {
-                    type: "select",
-                    options: [
-                        { label: "Primary", value: "primary" },
-                        { label: "Secondary", value: "secondary" },
-                    ],
-                },
             },
             defaultItemProps: {
                 label: "Button",
@@ -49,9 +41,9 @@ export const Header: ComponentConfig<HeaderProps> = {
             url: 'https://via.placeholder.com/300',
             alt: 'Default image'
         },
-        buttons: [{ label: 'Learn More', href: '#' }],
+        navItems: [{ label: 'Learn More', href: '#' }],
     },
-    render: ({ image, buttons }) => (
+    render: ({ image, navItems }) => (
         <header style={{
             display: "flex",
             height: "80px",
@@ -60,12 +52,12 @@ export const Header: ComponentConfig<HeaderProps> = {
             padding: "8px 20px",
             background: "#f8f9fa",
         }}>
-            {image?.url && <img src={image?.url} alt={image?.alt} style={{ height: "50px", objectFit: "contain" }} />}
+            {image?.url && <img src={image?.url} alt={image?.alt} style={{ height: "100%", objectFit: "contain" }} />}
             <nav className="flex gap-3">
-                {buttons?.map((button, i) => (
-                    <Button key={i} href={button?.href || '#'} variant={button?.variant}>
-                        {button?.label}
-                    </Button>
+                {navItems?.map((item, i) => (
+                    <a type="button" key={i} href={item?.href || '#'} className="text-[#292929] font-semibold hover:text-[#0158ad]">
+                        {item?.label}
+                    </a>
                 ))}
             </nav>
         </header>

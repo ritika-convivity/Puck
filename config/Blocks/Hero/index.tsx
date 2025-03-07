@@ -85,13 +85,13 @@ export const Hero: ComponentConfig<HeroProps> = {
                 </div>
                 <div className="flex gap-3 mt-4">
                     {buttons?.map((button, i) => (
-                        <Button key={i} href={button?.href || '#'} variant={button?.variant}>
+                        <a key={i} href={button?.href || '#'} className={`py-2.5 px-5 border cursor-pointer text-center rounded text-base font-semibold ${button?.variant === 'secondary' ? 'bg-[#fff] border-[#000] text-[#000]' : 'bg-[#0158ad] text-[#fff] border-[#0158ad]'}`}>
                             {button?.label}
-                        </Button>
+                        </a>
                     ))}
                 </div>
             </div>
-            {image?.mode === 'inline' ? image?.url && <img src={image?.url} alt={image?.alt} style={{ height: '365px', borderRadius: '16px' }} /> : ''}
+            <img src={image?.url} alt={image?.alt} style={{ height: '365px', borderRadius: '16px' }} />
         </section >
     ),
 };

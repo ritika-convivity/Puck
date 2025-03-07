@@ -8,6 +8,7 @@ import { Button, ButtonProps } from "./Blocks/Button";
 import { Header, HeaderProps } from "./Blocks/Header";
 import { Hero, HeroProps } from "./Blocks/Hero";
 import { Card, CardProps } from "./Blocks/Card";
+import { Example } from "./Blocks/Example";
 
 type Props = {
     HeadingBlock: HeadingProps;
@@ -19,6 +20,7 @@ type Props = {
     Header: HeaderProps;
     Hero: HeroProps;
     Card: CardProps;
+    Example: any;
 };
 
 export const config: Config<Props> = {
@@ -33,7 +35,7 @@ export const config: Config<Props> = {
             components: ['Button']
         },
         other: {
-            components: ['Header', 'Hero', 'Card']
+            components: ['Header', 'Hero', 'Card', 'Example']
         }
     },
     components: {
@@ -45,7 +47,8 @@ export const config: Config<Props> = {
         Button,
         Header,
         Hero,
-        Card
+        Card,
+        Example
     }
 };
 
