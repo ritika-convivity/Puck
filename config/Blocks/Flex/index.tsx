@@ -17,7 +17,8 @@ export const Flex: ComponentConfig<FlexProps> = {
             ]
         },
         gap: {
-            type: 'number'
+            type: 'number',
+            min: 0
         },
         wrap: {
             type: 'radio', options: [{ label: 'true', value: 'wrap' },
@@ -42,7 +43,7 @@ export const Flex: ComponentConfig<FlexProps> = {
         console.log(wrap, 'wrapwrap')
         return (
             <section style={{ padding: '6px' }}>
-                <DropZone zone="Flex" style={{
+                <DropZone zone="Flex" disallow={['Hero', 'Header']} style={{
                     display: 'flex', flexDirection: direction, gap: `${gap}px`,
                     justifyContent: justifyContent, flexWrap: `${wrap}`, alignItems: alignItems
                 }} />
