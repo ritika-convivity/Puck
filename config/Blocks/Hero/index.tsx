@@ -59,31 +59,40 @@ export const Hero: ComponentConfig<HeroProps> = {
     },
     defaultProps: {
         title: 'Hero',
+        image: { url: 'https://via.placeholder.com/300', alt: 'Default image', mode: 'inline' },
         description: 'Hero Description',
         buttons: [{ label: 'Learn More', href: '#' }],
         padding: '20px'
     },
     render: ({ title, description, image, buttons, padding }) => (
         <section style={{
-            padding: `${padding}`,
+            padding: `${padding} 30px`,
             backgroundImage: image?.mode === "background" ? `url(${image?.url})` : "none",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            height: '300px'
-        }} className="content">
-            <div className="max-w-3xl">
-                <h1 className="text-3xl font-bold">{title}</h1>
-                <p className="text-lg text-gray-600">{description}</p>
+            backgroundSize: "contain",
+            backgroundPosition: 'center'
+        }} className="content relative flex justify-between w-full h-full" >
+            {image?.mode === "background" ?
+                <div className="bg-gradient"
+                    style={{
+                        zIndex: 0,
+                        background: 'linear-gradient(to left, hsla(0,0%,100%,0), #f7faff 100%)',
+                        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0
+                    }}></div> : ''}
+            <div className="flex flex-col justify-center gap-4 z-1 relative">
+                <div className="max-w-xl flex flex-col gap-3">
+                    <h1 className="text-6xl font-bold">{title}</h1>
+                    <p className="text-lg text-gray-600">{description}</p>
+                </div>
+                <div className="flex gap-3 mt-4">
+                    {buttons?.map((button, i) => (
+                        <Button key={i} href={button?.href || '#'} variant={button?.variant}>
+                            {button?.label}
+                        </Button>
+                    ))}
+                </div>
             </div>
-            {image?.url && <img src={image?.url} alt={image?.alt} style={{ height: '' }} />}
-            <nav className="flex gap-3 mt-4">
-                {buttons?.map((button, i) => (
-                    <Button key={i} href={button?.href || '#'} variant={button?.variant}>
-                        {button?.label}
-                    </Button>
-                ))}
-            </nav>
-        </section>
+            {image?.mode === 'inline' ? image?.url && <img src={image?.url} alt={image?.alt} style={{ height: '365px', borderRadius: '16px' }} /> : ''}
+        </section >
     ),
 };
 

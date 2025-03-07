@@ -35,16 +35,16 @@ export const Card: ComponentConfig<CardProps> = {
         description: { type: 'textarea' }
     },
     defaultProps: {
-        icon: 'Feather',
-        title: 'title',
+        icon: 'badge-check',
+        title: 'Card title',
         description: 'Card description'
     },
     render: ({ title, description, icon }) => (
-        <div>
+        <div className="flex flex-col gap-4 p-4 justify-center items-center h-full text-center">
             <div>{icon && icons[icon]}</div>
-            <div>
-                <h6 className="text-xl">{title}</h6>
-                <p className="text-lg">{description}</p>
+            <div className="flex flex-col gap-2 items-center">
+                <h6 className="text-xl font-bold">{title}</h6>
+                <p className="text-lg font-normal text-gray-600">{description}</p>
             </div>
         </div>
     )

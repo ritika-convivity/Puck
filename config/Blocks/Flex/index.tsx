@@ -23,7 +23,7 @@ export const Flex: ComponentConfig<FlexProps> = {
     },
     render: ({ direction, gap }) => (
         <section style={{ padding: '6px' }}>
-            <DropZone zone="Zone-1" style={{ display: 'flex', flexDirection: `${direction}`, gap: `${gap}px` }} />
+            <DropZone zone="Flex" style={{ display: 'flex', flexDirection: `${direction}`, gap: `${gap}px` }} />
         </section>
     )
 }

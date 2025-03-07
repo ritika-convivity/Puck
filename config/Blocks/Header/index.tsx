@@ -44,13 +44,20 @@ export const Header: ComponentConfig<HeaderProps> = {
             },
         },
     },
+    defaultProps: {
+        image: {
+            url: 'https://via.placeholder.com/300',
+            alt: 'Default image'
+        },
+        buttons: [{ label: 'Learn More', href: '#' }],
+    },
     render: ({ image, buttons }) => (
         <header style={{
             display: "flex",
             height: "80px",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: "0 20px",
+            padding: "8px 20px",
             background: "#f8f9fa",
         }}>
             {image?.url && <img src={image?.url} alt={image?.alt} style={{ height: "50px", objectFit: "contain" }} />}
